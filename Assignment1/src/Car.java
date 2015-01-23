@@ -26,7 +26,7 @@ public class Car {
 	public void paint(Graphics g)
 	{
 		g.setColor(color);
-		g.fillRect(cx,  cy,  size,  size);
+		g.fillOval(cx,  cy,  size,  size);
 	}
 
 	public void update()
