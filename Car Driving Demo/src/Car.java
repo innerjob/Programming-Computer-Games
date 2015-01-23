@@ -22,6 +22,18 @@ public class Car {
 		xhi = cx + 130;
 		ylo = cy - 130;
 	}
+	
+	public Car(int s1, Building b, int gap)
+	{
+		size = s1;
+		cx = b.x - size - gap;
+		cy = b.y + b.size + gap;
+		int side = size + b.size + 2*gap;
+		xlo = cx;
+		yhi = cy;
+		xhi = cx + side;
+		ylo = cy - side;
+	}
 
 	public void paint(Graphics g)
 	{
