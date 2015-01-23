@@ -57,7 +57,7 @@ class FlyPanel extends JPanel implements Runnable
 		updateFly();
 		repaint();
 		try{
-		  Thread.sleep(100);
+		  Thread.sleep(0);
 		} catch (Exception e) {}
     }
   }
