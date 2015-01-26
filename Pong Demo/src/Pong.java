@@ -108,9 +108,9 @@ class PongPanel extends JPanel implements Runnable {
 		public void keyPressed(KeyEvent e) {
 			int c = e.getKeyCode();
 			switch (c) {
-			case KeyEvent.VK_A: pleft.setUpKey(true);
+			case KeyEvent.VK_UP: pleft.setUpKey(true);
 			break;
-			case KeyEvent.VK_Z: pleft.setDownKey(true);
+			case KeyEvent.VK_DOWN: pleft.setDownKey(true);
 			break;
 			case KeyEvent.VK_SEMICOLON: pright.setUpKey(true);
 			break;
