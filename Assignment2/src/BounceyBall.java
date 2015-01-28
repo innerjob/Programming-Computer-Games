@@ -53,17 +53,12 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 		Ball.draw(g);
 	}
 	
-	//Updates the position of the ball
-	public void update()
-	{
-		Ball.bounce();
-	}
-	
 	@Override
 	public void run() 
 	{
 		while(bounce != null)
 		{
+			//Bounce the ball
 			Ball.bounce();
 			repaint();
 			try 

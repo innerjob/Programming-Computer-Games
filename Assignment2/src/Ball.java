@@ -10,15 +10,18 @@ import java.awt.Graphics;
  */
 public class Ball 
 {
-	private int x, y, speedX, speedY;
-	private static final int radius = 20;
+	private int x, y, speedX = 0, speedY = 10;
+	private static final int radius = 20, up = 2, down = 1;
 	private int bounces;
+	
+	int moving = down;
 	
 	//Constructor that makes the ball
 	public Ball(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
+		
 	}
 	
 	//Draws the ball
@@ -31,8 +34,18 @@ public class Ball
 	//Bounces the ball
 	public void bounce()
 	{
-		x += 0;
-		y += 10;
+		//Start moving
+		x += speedX;
+		
+		
+		//Check to see if the ball has reached the edge of the 
+		switch(moving)
+		{
+		case down: y += speedY;
+		}
+		//Bounce the ball and decrease the speed to 0 in increments of -2
+		
+		
 	}
 	
 	//Keeps track of the number of bounces
