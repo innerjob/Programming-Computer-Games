@@ -20,9 +20,9 @@ public class Ball {
 	    x = Pong.WIDTH/2;
 	    y = Pong.HEIGHT/4;
 	    if (Math.random() < 0.5)
-	        vx = -7;
+	        vx = -10;
 	    else
-	        vx = 7;
+	        vx = 10;
 	    vy = (int)(2+3*Math.random());
 	}
 
@@ -43,8 +43,8 @@ public class Ball {
 	}
 
 	public void move() {
-		x += vx;
-		y += vy;
+		x += 10;
+		y += 10;
 		// Bounce off top and bottom of screen
 		if (y < RADIUS || y+RADIUS > Pong.HEIGHT)
 		    vy = -vy;
