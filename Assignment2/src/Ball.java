@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Random;
 
 /**
  * 
@@ -10,11 +11,10 @@ import java.awt.Graphics;
  */
 public class Ball 
 {
-	private int x, y, speedX = 0, speedY = 10;
-	private static final int radius = 20, up = 2, down = 1;
-	private int bounces;
-	
-	int moving = down;
+	private int x, y;
+	private static final int radius = 20;
+	private int moves;
+	Random rand = new Random();
 	
 	//Constructor that makes the ball
 	public Ball(int x, int y)
@@ -31,26 +31,16 @@ public class Ball
 		g.fillOval(x, y, radius, radius);
 	}
 	
-	//Bounces the ball
-	public void bounce()
+	//Move the ball
+	public void move()
 	{
-		//Start moving
-		x += speedX;
-		
-		
-		//Check to see if the ball has reached the edge of the 
-		switch(moving)
-		{
-		case down: y += speedY;
-		}
-		//Bounce the ball and decrease the speed to 0 in increments of -2
-		
-		
+		x = rand.nextInt(400);
+		y = rand.nextInt(400);
 	}
 	
-	//Keeps track of the number of bounces
-	public void bounces()
+	//Keeps track of the number of moves made
+	public void moves()
 	{
-		bounces++;
+		moves++;
 	}
 }

@@ -6,10 +6,12 @@
  */
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-public class BounceyBall 
+public class MovingBall 
 {
 	public static void main(String[] args)
 	{
@@ -31,7 +33,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	private int panelSize = 500;
 	private Graphics graph;
 	private Ball Ball;
-	private JLabel lbl = new JLabel("Click To Bounce");
+	private JLabel lbl = new JLabel("Click To Change Position");
 	
 	public BOUNCEYPANEL()
 	{	
@@ -58,8 +60,28 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 		while(bounce != null)
 		{
 			//Bounce the ball
-			Ball.bounce();
-			repaint();
+			addMouseListener(new MouseListener(){
+
+				@Override
+				public void mouseClicked(MouseEvent e) 
+				{
+					Ball.move();
+					repaint();
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {}
+
+				@Override
+				public void mouseExited(MouseEvent e) {}
+				
+			});
 			try 
 			{
 				Thread.sleep(40);
