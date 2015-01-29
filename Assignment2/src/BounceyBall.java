@@ -53,7 +53,6 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 		Ball.draw(g);
 	}
 	
-	@Override
 	public void run() 
 	{
 		while(bounce != null)
