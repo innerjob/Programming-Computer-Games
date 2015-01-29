@@ -53,35 +53,28 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	public void paintComponent(Graphics g)
 	{
 		Ball.draw(g);
+		Ball.drawMoves(g);
 	}
 	
 	public void run() 
 	{
 		while(bounce != null)
 		{
-			//Bounce the ball
-			addMouseListener(new MouseListener(){
-
-				@Override
+			//Move the ball
+			addMouseListener(new MouseListener()
+			{
 				public void mouseClicked(MouseEvent e) 
 				{
 					Ball.move();
-					repaint();
+					Ball.moves();
 				}
-
-				@Override
 				public void mousePressed(MouseEvent e) {}
-
-				@Override
 				public void mouseReleased(MouseEvent e) {}
-
-				@Override
 				public void mouseEntered(MouseEvent e) {}
-
-				@Override
 				public void mouseExited(MouseEvent e) {}
 				
 			});
+			repaint();
 			try 
 			{
 				Thread.sleep(40);

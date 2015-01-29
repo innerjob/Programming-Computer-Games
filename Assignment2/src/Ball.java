@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Random;
 
@@ -31,6 +32,13 @@ public class Ball
 		g.fillOval(x, y, radius, radius);
 	}
 	
+	public void drawMoves(Graphics g)
+	{
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("SansSerif", Font.BOLD, 24));
+		g.drawString(""+moves, x, y);
+	}
+	
 	//Move the ball
 	public void move()
 	{
@@ -41,6 +49,6 @@ public class Ball
 	//Keeps track of the number of moves made
 	public void moves()
 	{
-		moves++;
+		moves+=1;
 	}
 }
