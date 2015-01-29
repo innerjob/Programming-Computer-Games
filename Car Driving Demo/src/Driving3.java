@@ -38,7 +38,7 @@ class Driving3Panel extends JPanel implements Runnable {
   public Driving3Panel() {
     super();
   	// Set starting position of car
-  	c = new Car(140, 140, 30);
+  	c = new Car(160, 160, 30);
   	c2 = new Car(10, 140, 30);
   	bldgs[0] = new Building(50,50,80);
   	bldgs[1] = new Building(180,50,80);

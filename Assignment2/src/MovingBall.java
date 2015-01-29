@@ -17,7 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MovingBall 
-{
+{		
+	static final int BOXSIZE = 500;
 	public static void main(String[] args)
 	{
 		//Create the frame
@@ -34,24 +35,34 @@ public class MovingBall
 
 class BOUNCEYPANEL extends JPanel implements Runnable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int BOXSIZE = 500;
 	Thread bounce;
-	private int panelSize = 500;
 	private JPanel panel = new JPanel();
 	private Graphics graph;
 	private Ball Ball;
 	private JButton btn = new JButton("Bounce");
 	private JLabel lbl = new JLabel("Click To Reverse Direction");
 	
-	//Figure out the edges of the screen
-	private int bottomEdge, topEdge, rightEdge, leftEdge;  
-	
 	public BOUNCEYPANEL()
 	{	
-		Ball = new Ball(240, 200);
+		Ball = new Ball(250, 150);
 		add(panel, BorderLayout.NORTH);
 		panel.add(lbl);
 		//Set the size of the JPanel
-		setPreferredSize(new Dimension(panelSize, panelSize));
+		setPreferredSize(new Dimension(BOXSIZE, BOXSIZE));
+		
+//		addMouseListener(new MouseListener()
+//		{
+//			public void mouseClicked(MouseEvent e){Ball.reverse(e);}
+//			public void mousePressed(MouseEvent e) {}
+//			public void mouseReleased(MouseEvent e) {}
+//			public void mouseEntered(MouseEvent e) {}
+//			public void mouseExited(MouseEvent e) {}
+//		});
 	}
 	
 	//Start The Thread
@@ -65,30 +76,29 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	//Paint The Ball
 	public void paintComponent(Graphics g)
 	{
+		//Draw the ball
 		Ball.draw(g);
+		//Draw the score
+		Ball.drawScore(g);
 	}
 	
 	public void run() 
 	{
 		while(bounce != null)
 		{
-			//Try to get it to move on click
-			addMouseListener(new MouseListener()
-			{
-				public void mouseClicked(MouseEvent e){}
-				public void mousePressed(MouseEvent e) {}
-				public void mouseReleased(MouseEvent e) {}
-				public void mouseEntered(MouseEvent e) {}
-				public void mouseExited(MouseEvent e) {}
-			});
-			
 			//Move the ball
 			//Ball.reverse(); --> Try to get the ball to reverse on click
 			Ball.move();
+//			addMouseListener(new MouseListener()
+//			{
+//				public void mouseClicked(MouseEvent e){Ball.reverse(e);}
+//				public void mousePressed(MouseEvent e) {}
+//				public void mouseReleased(MouseEvent e) {}
+//				public void mouseEntered(MouseEvent e) {}
+//				public void mouseExited(MouseEvent e) {}
+//			});
+			//Repaint the screen
 			repaint();
-			
-			
-			
 			try 
 			{
 				Thread.sleep(40);
