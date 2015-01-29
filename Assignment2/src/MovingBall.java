@@ -63,13 +63,9 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 			//Move the ball
 			addMouseListener(new MouseListener()
 			{
-				public void mouseClicked(MouseEvent e) 
-				{
-					Ball.move();
-					Ball.moves();
-				}
+				public void mouseClicked(MouseEvent e){Ball.move();}
 				public void mousePressed(MouseEvent e) {}
-				public void mouseReleased(MouseEvent e) {}
+				public void mouseReleased(MouseEvent e) {Ball.count();}
 				public void mouseEntered(MouseEvent e) {}
 				public void mouseExited(MouseEvent e) {}
 				

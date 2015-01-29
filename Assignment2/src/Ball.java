@@ -14,15 +14,14 @@ public class Ball
 {
 	private int x, y;
 	private static final int radius = 20;
-	private int moves;
-	Random rand = new Random();
+	private int counter;
+	private Random rand = new Random();
 	
 	//Constructor that makes the ball
 	public Ball(int x, int y)
 	{
 		this.x = x;
 		this.y = y;
-		
 	}
 	
 	//Draws the ball
@@ -36,7 +35,7 @@ public class Ball
 	{
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("SansSerif", Font.BOLD, 24));
-		g.drawString(""+moves, x, y);
+		g.drawString(""+counter, x, y);
 	}
 	
 	//Move the ball
@@ -47,8 +46,8 @@ public class Ball
 	}
 	
 	//Keeps track of the number of moves made
-	public void moves()
+	public void count()
 	{
-		moves+=1;
+		counter++;
 	}
 }

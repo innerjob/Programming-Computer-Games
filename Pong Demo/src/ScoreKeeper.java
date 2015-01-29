@@ -14,7 +14,7 @@ public class ScoreKeeper {
    public void draw(Graphics g){
 	   g.setColor(Color.black);
 	   g.setFont(font);
-	   g.drawString(""+left, 2*Pong.EDGE, 2*Pong.EDGE);
+	   g.drawString(""+left, 60, 60);
 	   g.drawString(""+right, Pong.WIDTH - 2*Pong.EDGE, 2*Pong.EDGE);
    }
 
