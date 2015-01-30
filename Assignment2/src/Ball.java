@@ -11,7 +11,7 @@ public class Ball
 {
 	private int x, y;
 	private int vx = 0, vy = 10;
-	private int radius = 50;
+	private int diameter = 50;
 	private static final int up = 1;
 	private static final int down = 2;
 	private static final int left = 3;
@@ -32,7 +32,7 @@ public class Ball
 	public void draw(Graphics g)
 	{
 		g.setColor(Color.BLUE);
-		g.fillOval(x, y, radius, radius);
+		g.fillOval(x, y, diameter, diameter);
 	}
 	
 	//Draws The Score On The Screen
@@ -55,15 +55,15 @@ public class Ball
 		 */
 		if(x < 0)
 		{
-			//radius+=10;
+			//diameter+=10;
 			vx = -vx;
 			x = 0;
 			counter++;
 		}
-		if(x + radius> MovingBall.BOXSIZE)
+		if(x + diameter> MovingBall.BOXSIZE)
 		{
 			vx = -vx;
-            x = MovingBall.BOXSIZE - radius;
+            x = MovingBall.BOXSIZE - diameter;
             counter++;
 		}
 		if(y < 0)//If it hits the top
@@ -72,10 +72,10 @@ public class Ball
 			y = 0;
 			counter++;
 		}
-		if(y + radius> MovingBall.BOXSIZE)//if it hits the bottom
+		if(y + diameter> MovingBall.BOXSIZE)//if it hits the bottom
 		{
 			vy = -vy;
-			y = MovingBall.BOXSIZE - radius;
+			y = MovingBall.BOXSIZE - diameter;
 			counter++;
 		}
 	}
