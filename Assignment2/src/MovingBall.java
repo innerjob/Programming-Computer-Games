@@ -1,8 +1,9 @@
 /**
  * @author Sam
  * 
- * 	This class draws the panel and a ball. The main purpose it to have a ball drawn on the screen 
- * 		and to have it fall and bounce. When the mouse is clicked somewhere on the screen the ball will change directions
+ * 	This class draws the panel and a ball. The main purpose it to have a ball drawn on the screen and to have it fall
+ * 		 and bounce. When the mouse is clicked somewhere on the screen the ball will change directions. If it hits the sides
+ * 		 10 times the game stops
  */
 
 import java.awt.BorderLayout;

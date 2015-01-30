@@ -10,7 +10,7 @@ import java.util.Random;
 public class Ball 
 {
 	private int x, y;
-	private int vx = 0, vy = 10;
+	private int vx = 0, vy = 20;
 	private int diameter = 50;
 	private static final int up = 1;
 	private static final int down = 2;
@@ -51,31 +51,33 @@ public class Ball
 		
 		/*
 		 * If the ball bounces off of a wall of the panel increase counter by 1 and bounce the ball in the opposite direction and increase the speed
-		 * Don't forget to change the state approproately
 		 */
-		if(x < 0)
+		if(x < 0)//If it hits the left side
 		{
-			//diameter+=10;
 			vx = -vx;
 			x = 0;
+			diameter = diameter += 10;//Increase the size of the ball
 			counter++;
 		}
-		if(x + diameter> MovingBall.BOXSIZE)
+		if(x + diameter> MovingBall.BOXSIZE)//If it hits the right side
 		{
 			vx = -vx;
             x = MovingBall.BOXSIZE - diameter;
+			diameter = diameter += 10;//Increase the size of the ball
             counter++;
 		}
 		if(y < 0)//If it hits the top
 		{
 			vy = -vy;
 			y = 0;
+			diameter = diameter += 10;//Increase the size of the ball
 			counter++;
 		}
 		if(y + diameter> MovingBall.BOXSIZE)//if it hits the bottom
 		{
 			vy = -vy;
 			y = MovingBall.BOXSIZE - diameter;
+			diameter = diameter += 10;//Increase the size of the ball
 			counter++;
 		}
 	}
@@ -92,26 +94,26 @@ public class Ball
 		{
 		//if the mouse is clicked make it go left
 		case down:
-				vx = -10;
+				vx = -20;
 				vy = 0;
 				state = left;
 			break;
 		//if the mouse is clicked make it go up
 		case left: 
 				vx = 0;
-				vy = -10;
+				vy = -20;
 				state = up;
 			break;
 		//if the mouse is clicked make it go right
 		case up: 
-				vx = 10;
+				vx = 20;
 				vy = 0;
 				state = right;
 			break;
 		//if the mouse is clicked make it go down
 		case right: 
 				vx = 0;
-				vy = 10;
+				vy = 20;
 				state = down;
 			break;
 		}
