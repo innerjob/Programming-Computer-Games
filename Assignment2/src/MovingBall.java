@@ -76,6 +76,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	//Paint The Ball
 	public void paintComponent(Graphics g)
 	{
+		g.fillRect(0, 0, BOXSIZE, BOXSIZE);
 		//Draw the ball
 		Ball.draw(g);
 		//Draw the score
