@@ -17,7 +17,7 @@ public class Ball
 	private static final int left = 3;
 	private static final int right = 4; 
 	//Count the number of bounces
-	private int counter;
+	private int counter = 10;
 	//private Random rand = new Random();
 	private int state = down;
 	
@@ -57,31 +57,32 @@ public class Ball
 			vx = -vx;
 			x = 0;
 			diameter = diameter += 10;//Increase the size of the ball
-			counter++;
+			counter--;//Take one off the counter
 		}
 		if(x + diameter> MovingBall.BOXSIZE)//If it hits the right side
 		{
 			vx = -vx;
             x = MovingBall.BOXSIZE - diameter;
 			diameter = diameter += 10;//Increase the size of the ball
-            counter++;
+            counter--;//Take one off the counter
 		}
 		if(y < 0)//If it hits the top
 		{
 			vy = -vy;
 			y = 0;
 			diameter = diameter += 10;//Increase the size of the ball
-			counter++;
+			counter--;//Take one off the counter
 		}
 		if(y + diameter> MovingBall.BOXSIZE)//if it hits the bottom
 		{
 			vy = -vy;
 			y = MovingBall.BOXSIZE - diameter;
 			diameter = diameter += 10;//Increase the size of the ball
-			counter++;
+			counter--;//Take one off the counter
 		}
 	}
 	
+	//Get the counter to see when it hits zero
 	public int getCounter()
 	{
 		return counter;

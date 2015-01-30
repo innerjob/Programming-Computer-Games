@@ -43,10 +43,8 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int BOXSIZE = 500;
+	private static final int BOXSIZE = 500;//Make the panel a square
 	Thread bounce;
-	private JPanel panel = new JPanel();
-	private Graphics graph;
 	private Ball Ball;
 	private JLabel lbl = new JLabel("Click To Change Direction. Try Not To Hit The Sides!");
 	//private TechUtil util = new TechUtil();
@@ -59,9 +57,10 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 		//Set the size of the JPanel
 		setPreferredSize(new Dimension(BOXSIZE, BOXSIZE));
 		
+		//Change the direction of the ball on mouse click
 		addMouseListener(new MouseListener()
 		{
-			public void mouseClicked(MouseEvent e){Ball.reverse();}
+			public void mouseClicked(MouseEvent e){Ball.reverse();}//Change ball direction
 			public void mousePressed(MouseEvent e) {}
 			public void mouseReleased(MouseEvent e) {}
 			public void mouseEntered(MouseEvent e) {}
@@ -74,11 +73,12 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	{
 		super.addNotify();
 		bounce = new Thread(this);
-		bounce.start();
+		bounce.start();//Start the thread
 	}
 	//Paint The Ball
 	public void paintComponent(Graphics g)
 	{
+		//Set the color of the screen
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, BOXSIZE, BOXSIZE);
 		//Draw the ball
@@ -92,13 +92,14 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 		while(bounce != null)
 		{
 			//Move the ball
-			//Ball.reverse(); --> Try to get the ball to reverse on click
 			Ball.move();
 			
+			//Check to see when the counter runs out
 			int c = Ball.getCounter();
-			if(c == 10)
-			{
+			if(c == 0)
+			{//Stop the game from running
 				bounce = null;
+				//Print out an error message when the counter runs out
 				//util.popup("Lost", "You Lost!", 100, 100); Fix this by adding the other JAR file from my desktop
 				System.out.println("You Lost!");
 			}
@@ -106,6 +107,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 			repaint();
 			try 
 			{
+				//Delay the thread 40ms
 				Thread.sleep(40);
 		    } catch(InterruptedException e) {}
 		}
