@@ -75,11 +75,9 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 		bounce = new Thread(this);
 		bounce.start();
 	}
-
 	//Paint The Ball
 	public void paintComponent(Graphics g)
 	{
-
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, BOXSIZE, BOXSIZE);
 		//Draw the ball
