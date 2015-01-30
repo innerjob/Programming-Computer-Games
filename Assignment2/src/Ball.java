@@ -11,9 +11,11 @@ public class Ball
 {
 	private int x, y;
 	private int vx = 0, vy = 10;
-	private static final int radius = 20, up = 1, down = 2, left = 3, right = 4;
-	//Figure out the edges of the screen
-	private int bottomEdge, topEdge, rightEdge, leftEdge;  
+	private int radius = 50;
+	private static final int up = 1;
+	private static final int down = 2;
+	private static final int left = 3;
+	private static final int right = 4; 
 	//Count the number of bounces
 	private int counter;
 	//private Random rand = new Random();
@@ -24,7 +26,6 @@ public class Ball
 	{
 		this.x = x;
 		this.y = y;
-		
 	}
 	
 	//Draws the ball
@@ -48,75 +49,65 @@ public class Ball
 		x += vx;
 		y += vy;
 		
-		//If the ball bounces off of a wall of the panel increase counter by 1 and bounce the ball in the opposite direction
-		if(x - radius < 0)
+		/*
+		 * If the ball bounces off of a wall of the panel increase counter by 1 and bounce the ball in the opposite direction and increase the speed
+		 * Don't forget to change the state approproately
+		 */
+		if(x < 0)
 		{
+			//radius+=10;
 			vx = -vx;
-			x = radius;
+			x = 0;
 			counter++;
 		}
-		if(x + radius > MovingBall.BOXSIZE)
+		if(x + radius> MovingBall.BOXSIZE)
 		{
 			vx = -vx;
             x = MovingBall.BOXSIZE - radius;
             counter++;
 		}
-		if(y - radius < 0)
+		if(y < 0)//If it hits the top
 		{
 			vy = -vy;
-			y = radius;
+			y = 0;
 			counter++;
 		}
-		if(y + radius > MovingBall.BOXSIZE)
+		if(y + radius> MovingBall.BOXSIZE)//if it hits the bottom
 		{
 			vy = -vy;
 			y = MovingBall.BOXSIZE - radius;
 			counter++;
 		}
-		
-		
 	}
 	
 	//Reverses The Direction Of The Ball
-	public void reverse(MouseEvent e)
+	public void reverse()
 	{	
 		switch(state)
 		{
 		//if the mouse is clicked make it go left
-		case down: 
-			if(e.isConsumed())
-			{
-				x -= 10;
-				y += 0;
+		case down:
+				vx = -10;
+				vy = 0;
 				state = left;
-			}
 			break;
 		//if the mouse is clicked make it go up
 		case left: 
-			if(e.isConsumed())
-			{
-				x += 0;
-				y -= 10;
+				vx = 0;
+				vy = -10;
 				state = up;
-			}
 			break;
 		//if the mouse is clicked make it go right
 		case up: 
-			if(e.isConsumed())
-			{
-				x += 10;
-				y += 0;
-				state = up;
-			}
+				vx = 10;
+				vy = 0;
+				state = right;
 			break;
 		//if the mouse is clicked make it go down
 		case right: 
-			if(e.isConsumed())
-			{
-				x += vx;
-				y += vy;
-				state = up;
-			}
+				vx = 0;
+				vy = 10;
+				state = down;
 			break;
 		}
 	}

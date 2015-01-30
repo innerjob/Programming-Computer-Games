@@ -1,8 +1,8 @@
 /**
  * @author Sam
  * 
- * 	This class draws the panel and a ball. The main purpose it to have a ball drawn in the center of the screen 
- * 		and to have it fall and bounce when the mouse is clicked somewhere on the screen
+ * 	This class draws the panel and a ball. The main purpose it to have a ball drawn on the screen 
+ * 		and to have it fall and bounce. When the mouse is clicked somewhere on the screen the ball will change directions
  */
 
 import java.awt.BorderLayout;
@@ -25,11 +25,12 @@ public class MovingBall
 		JFrame frame = new JFrame("Bouncy Ball");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 500, 500);
+//		frame.setBounds(100, 100, 500, 500);
 		
 		//Create the panel and add it to the frame
 		BOUNCEYPANEL panel = new BOUNCEYPANEL();
 		frame.add(panel, BorderLayout.CENTER);
+		frame.pack();
 	}
 }
 
@@ -44,25 +45,24 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	private JPanel panel = new JPanel();
 	private Graphics graph;
 	private Ball Ball;
-	private JButton btn = new JButton("Bounce");
-	private JLabel lbl = new JLabel("Click To Reverse Direction");
+	private JLabel lbl = new JLabel("Click To Change Direction. Try Not To Hit The Sides!");
 	
 	public BOUNCEYPANEL()
 	{	
 		Ball = new Ball(250, 150);
-		add(panel, BorderLayout.NORTH);
-		panel.add(lbl);
+		add(lbl, BorderLayout.NORTH);
+		
 		//Set the size of the JPanel
 		setPreferredSize(new Dimension(BOXSIZE, BOXSIZE));
 		
-//		addMouseListener(new MouseListener()
-//		{
-//			public void mouseClicked(MouseEvent e){Ball.reverse(e);}
-//			public void mousePressed(MouseEvent e) {}
-//			public void mouseReleased(MouseEvent e) {}
-//			public void mouseEntered(MouseEvent e) {}
-//			public void mouseExited(MouseEvent e) {}
-//		});
+		addMouseListener(new MouseListener()
+		{
+			public void mouseClicked(MouseEvent e){Ball.reverse();}
+			public void mousePressed(MouseEvent e) {}
+			public void mouseReleased(MouseEvent e) {}
+			public void mouseEntered(MouseEvent e) {}
+			public void mouseExited(MouseEvent e) {}
+		});
 	}
 	
 	//Start The Thread
@@ -89,14 +89,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 			//Move the ball
 			//Ball.reverse(); --> Try to get the ball to reverse on click
 			Ball.move();
-//			addMouseListener(new MouseListener()
-//			{
-//				public void mouseClicked(MouseEvent e){Ball.reverse(e);}
-//				public void mousePressed(MouseEvent e) {}
-//				public void mouseReleased(MouseEvent e) {}
-//				public void mouseEntered(MouseEvent e) {}
-//				public void mouseExited(MouseEvent e) {}
-//			});
+			
 			//Repaint the screen
 			repaint();
 			try 
