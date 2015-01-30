@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.TechU.OpenSource.TechUtil;
+//import com.TechU.OpenSource.TechUtil;
 
 public class MovingBall 
 {		
@@ -48,7 +48,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	private Graphics graph;
 	private Ball Ball;
 	private JLabel lbl = new JLabel("Click To Change Direction. Try Not To Hit The Sides!");
-	private TechUtil util = new TechUtil();
+	//private TechUtil util = new TechUtil();
 	
 	public BOUNCEYPANEL()
 	{	
