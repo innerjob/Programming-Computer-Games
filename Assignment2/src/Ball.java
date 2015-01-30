@@ -80,6 +80,11 @@ public class Ball
 		}
 	}
 	
+	public int getCounter()
+	{
+		return counter;
+	}
+	
 	//Reverses The Direction Of The Ball
 	public void reverse()
 	{	

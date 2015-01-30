@@ -6,15 +6,17 @@
  */
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.TechU.OpenSource.TechUtil;
 
 public class MovingBall 
 {		
@@ -46,6 +48,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	private Graphics graph;
 	private Ball Ball;
 	private JLabel lbl = new JLabel("Click To Change Direction. Try Not To Hit The Sides!");
+	private TechUtil util = new TechUtil();
 	
 	public BOUNCEYPANEL()
 	{	
@@ -76,6 +79,8 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	//Paint The Ball
 	public void paintComponent(Graphics g)
 	{
+
+		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, BOXSIZE, BOXSIZE);
 		//Draw the ball
 		Ball.draw(g);
@@ -91,6 +96,13 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 			//Ball.reverse(); --> Try to get the ball to reverse on click
 			Ball.move();
 			
+			int c = Ball.getCounter();
+			if(c == 10)
+			{
+				bounce = null;
+				//util.popup("Lost", "You Lost!", 100, 100); Fix this by adding the other JAR file from my desktop
+				System.out.println("You Lost!");
+			}
 			//Repaint the screen
 			repaint();
 			try 
