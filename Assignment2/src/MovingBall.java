@@ -10,10 +10,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -49,6 +49,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	Thread bounce;
 	private Ball Ball;
 	private JLabel lbl = new JLabel("Click To Change Direction. Try Not To Hit The Sides!");
+	private KeyListener listener;
 	//private TechUtil util = new TechUtil();
 
 	
