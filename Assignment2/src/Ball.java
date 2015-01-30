@@ -1,8 +1,8 @@
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author Sam Redmond
@@ -18,6 +18,8 @@ public class Ball
 	private static final int right = 4; 
 	//Count the number of bounces
 	private int counter = 10;
+	//Score
+	private int score;
 	//private Random rand = new Random();
 	private int state = down;
 	
@@ -41,6 +43,7 @@ public class Ball
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("SansSerif",Font.PLAIN, 24));
 		g.drawString(""+counter,60, 60);
+		g.drawString(""+score, 440, 60);
 	}
 	
 	//Move the ball
@@ -118,5 +121,17 @@ public class Ball
 				state = down;
 			break;
 		}
+	}
+	
+	//Increase Score
+	public void increaseScore()
+	{
+		score = score+1;
+	}
+	
+	//Return the score
+	public int getScore()
+	{
+		return score;
 	}
 }

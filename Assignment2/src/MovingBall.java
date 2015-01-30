@@ -2,8 +2,8 @@
  * @author Sam
  * 
  * 	This class draws the panel and a ball. The main purpose it to have a ball drawn on the screen and to have it fall
- * 		 and bounce. When the mouse is clicked somewhere on the screen the ball will change directions. If it hits the sides
- * 		 10 times the game stops
+ * 		and bounce. When the mouse is clicked somewhere on the screen the ball will change directions. If it hits the sides
+ * 		10 times the game stops and you get your score
  */
 
 import java.awt.BorderLayout;
@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -48,6 +50,7 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 	private Ball Ball;
 	private JLabel lbl = new JLabel("Click To Change Direction. Try Not To Hit The Sides!");
 	//private TechUtil util = new TechUtil();
+
 	
 	public BOUNCEYPANEL()
 	{	
@@ -93,7 +96,8 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 		{
 			//Move the ball
 			Ball.move();
-			
+			//Increase the score
+			Ball.increaseScore();
 			//Check to see when the counter runs out
 			int c = Ball.getCounter();
 			if(c == 0)
@@ -101,13 +105,13 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 				bounce = null;
 				//Print out an error message when the counter runs out
 				//util.popup("Lost", "You Lost!", 100, 100); Fix this by adding the other JAR file from my desktop
-				System.out.println("You Lost!");
+				System.out.println("You Lost! \nScore: " + Ball.getScore());
 			}
 			//Repaint the screen
 			repaint();
 			try 
 			{
-				//Delay the thread 40ms
+				//Delay the thread 
 				Thread.sleep(40);
 		    } catch(InterruptedException e) {}
 		}
