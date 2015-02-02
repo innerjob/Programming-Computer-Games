@@ -35,20 +35,17 @@ public class MovingBall
 		//Create the panel and add it to the frame
 		BOUNCEYPANEL panel = new BOUNCEYPANEL();
 		frame.add(panel, BorderLayout.CENTER);
-		frame.pack();
+		frame.pack();//this will make sure that the frame is sized to the panel
 	}
 }
 
 class BOUNCEYPANEL extends JPanel implements Runnable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static final int BOXSIZE = 500;//Make the panel a square
 	Thread bounce;
 	private Ball Ball;
-	private JLabel lbl = new JLabel("Click To Change Direction. Try Not To Hit The Sides!");
+	private JLabel lbl = new JLabel("Click To Change Direction. Don't Hit The Sides. Score 1000 And You Win!");
 	private KeyListener listener;
 	//private TechUtil util = new TechUtil();
 
@@ -101,13 +98,23 @@ class BOUNCEYPANEL extends JPanel implements Runnable
 			Ball.increaseScore();
 			//Check to see when the counter runs out
 			int c = Ball.getCounter();
+			int s = Ball.getScore();
+			
+			//Player will lose if the counter runs out before they get to 1000
 			if(c == 0)
 			{//Stop the game from running
 				bounce = null;
 				//Print out an error message when the counter runs out
 				//util.popup("Lost", "You Lost!", 100, 100); Fix this by adding the other JAR file from my desktop
-				System.out.println("You Lost! \nScore: " + Ball.getScore());
+				System.out.println("Sorry...\nYou Lost! \nScore: " + Ball.getScore());
+			}else if(s == 1000)
+			{
+				bounce = null;
+				//Print out a win message when the score reaches 1000
+				//util.popup("Lost", "You Lost!", 100, 100); Fix this by adding the other JAR file from my desktop
+				System.out.println("Congratulations!\nYou Win! \nScore: " + Ball.getScore());
 			}
+			
 			//Repaint the screen
 			repaint();
 			try 

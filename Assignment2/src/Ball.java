@@ -6,6 +6,7 @@ import java.util.TimerTask;
 
 /**
  * @author Sam Redmond
+ * This class creates a Ball object and it's methods.
  */
 public class Ball 
 {
@@ -42,8 +43,8 @@ public class Ball
 	{
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("SansSerif",Font.PLAIN, 24));
-		g.drawString(""+counter,60, 60);
-		g.drawString(""+score, 440, 60);
+		g.drawString("Lives: "+counter,10, 60);
+		g.drawString("Score: "+score, 350, 60);
 	}
 	
 	//Move the ball
@@ -55,33 +56,37 @@ public class Ball
 		/*
 		 * If the ball bounces off of a wall of the panel increase counter by 1 and bounce the ball in the opposite direction and increase the speed
 		 */
-		if(x < 0)//If it hits the left side
+		if(x < 0)//If it bounces off the left side
 		{
 			vx = -vx;
 			x = 0;
-			diameter = diameter += 10;//Increase the size of the ball
+			diameter = diameter += 12;//Increase the size of the ball
 			counter--;//Take one off the counter
+			state = right;//Make sure the program knows which direction the ball is moving
 		}
-		if(x + diameter> MovingBall.BOXSIZE)//If it hits the right side
+		if(x + diameter> MovingBall.BOXSIZE)//If it bounces off the right side
 		{
 			vx = -vx;
             x = MovingBall.BOXSIZE - diameter;
-			diameter = diameter += 10;//Increase the size of the ball
+			diameter = diameter += 12;//Increase the size of the ball
             counter--;//Take one off the counter
+          state = left;//Make sure the program knows which direction the ball is moving
 		}
-		if(y < 0)//If it hits the top
+		if(y < 0)//If it bounces off the top
 		{
 			vy = -vy;
 			y = 0;
-			diameter = diameter += 10;//Increase the size of the ball
+			diameter = diameter += 12;//Increase the size of the ball
 			counter--;//Take one off the counter
+			state = down;//Make sure the program knows which direction the ball is moving
 		}
-		if(y + diameter> MovingBall.BOXSIZE)//if it hits the bottom
+		if(y + diameter> MovingBall.BOXSIZE)//if it bounces off the bottom
 		{
 			vy = -vy;
 			y = MovingBall.BOXSIZE - diameter;
-			diameter = diameter += 10;//Increase the size of the ball
+			diameter = diameter += 12;//Increase the size of the ball
 			counter--;//Take one off the counter
+			state = up;//Make sure the program knows which direction the ball is moving
 		}
 	}
 	
