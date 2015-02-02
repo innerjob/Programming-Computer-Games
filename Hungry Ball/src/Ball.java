@@ -89,6 +89,10 @@ public class Ball
 		/*
 		 * if the ball hits the food then the food will vanish and increaseScore will be called, the ball will grow, 
 		 * and the food will appear in another random spot
+		 * 
+		 * 1.) Determine if there is a collision between the balls
+		 * 2.) If there is, make the food vanish and reappear somewhere else, make the main ball grow
+		 * 
 		 */
 		
 	}
