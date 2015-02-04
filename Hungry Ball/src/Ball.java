@@ -9,6 +9,10 @@ public class Ball
 //	private static final int up = 1, down = 2, left = 3, right = 4;
 //	private int state = down;
 	private Random rand = new Random();
+	private static final int up = 1, down = 2, left = 3, right = 4;
+	private int state = down;
+	
+	boolean upKey = false, leftKey = false, downKey = false, rightKey = false;
 	
 	//Ball constructor
 	public Ball(int x, int y)
@@ -41,11 +45,39 @@ public class Ball
 		g.drawString("Score: "+score, 30, 40);
 	}
 	
-	//Moves the ball
+	//Moves the ball on key press
 	public void moveBall()
 	{
 		x += vx;
 		y += vy;
+		//State is down
+		
+		if(upKey)
+		{
+			vy = -(vy);
+			//ball is going up
+		}
+		
+		if(leftKey)
+		{
+			vy = 0;
+			vx = 15;
+			//ball is going left
+		}
+		
+		if(rightKey)
+		{
+			vy = 0;
+			vx = -15;
+			//ball is going right
+		}
+		
+		if(downKey)
+		{
+			vx = 0;
+			vy = 15;
+			//ball is going down
+		}
 	}
 	
 	//Checks to see if the ball hit a side
@@ -82,7 +114,28 @@ public class Ball
 	{
 		return score;
 	}
+
+//	Set the up,left,down,right keys********
+	public void set_up(boolean val)
+	{
+		upKey = val;
+	}
 	
+	public void set_down(boolean val)
+	{
+		downKey = val;
+	}
+	
+	public void set_left(boolean val)
+	{
+		leftKey = val;
+	}
+	
+	public void set_right(boolean val)
+	{
+		rightKey = val;
+	}
+//******************************************
 	//Checks to see if the ball and the food touched
 	public void eat()
 	{
@@ -94,6 +147,9 @@ public class Ball
 		 * 2.) If there is, make the food vanish and reappear somewhere else, make the main ball grow
 		 * 
 		 */
+		
+		
+		
 		
 	}
 }
