@@ -27,7 +27,6 @@ public class HungryBall
 		
 		//Make it false and be able to set a difficulty level
 		HungryBallPanel panel = new HungryBallPanel();
-		panel.setVisible(false);
 		
 		//Buttons to set difficulty
 		JButton easy = new JButton("Easy");// speed = 10
@@ -36,7 +35,6 @@ public class HungryBall
 			{
 				Easy = true;
 				isClicked = true;
-				panel.setVisible(true);
 				panel1.setVisible(false);
 			}
 		});
@@ -47,7 +45,6 @@ public class HungryBall
 			{
 				Medium = true;
 				isClicked = true;
-				panel.setVisible(true);
 				panel1.setVisible(false);
 			}
 		});
@@ -58,7 +55,6 @@ public class HungryBall
 			{
 				Hard = true;
 				isClicked = true;
-				panel.setVisible(true);
 				panel1.setVisible(false);
 			}
 		});
@@ -93,7 +89,8 @@ class HungryBallPanel extends JPanel implements Runnable
 	{
 		super.addNotify();
 		thread = new Thread(this);
-		if(HungryBall.isClicked)
+		//Won't start!
+		if(HungryBall.isClicked == true)
 		{
 			thread.start();
 		}
