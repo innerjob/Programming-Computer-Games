@@ -27,6 +27,7 @@ public class ShootingBullet
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);//have the frame popup in the center
+		frame.setResizable(false);
 		
 		ShootingPanel panel = new ShootingPanel();
 		
@@ -82,7 +83,7 @@ class ShootingPanel extends JPanel implements Runnable
 	
 	public void paintComponent(Graphics g)
 	{
-		g.setColor(Color.BLACK);
+		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		bullet.paint(g);
 	}
