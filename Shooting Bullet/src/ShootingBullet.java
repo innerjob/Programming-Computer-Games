@@ -19,9 +19,14 @@ import javax.swing.JPanel;
 
 public class ShootingBullet 
 {
-	public static void main(String[] args)
+//	public static void main(String[] args)
+//	{
+//		ShootingBullet game = new ShootingBullet();
+//	}
+	
+	public ShootingBullet(String name)
 	{
-		JFrame frame = new JFrame("Shooting Bullet");
+		JFrame frame = new JFrame(name + " Playing Shooting Bullet");
 		
 		frame.setSize(500, 300);
 		frame.setVisible(true);
@@ -38,6 +43,8 @@ public class ShootingBullet
 }
 
 
+
+
 class ShootingPanel extends JPanel implements Runnable
 {
 	
@@ -51,32 +58,11 @@ class ShootingPanel extends JPanel implements Runnable
 	public ShootingPanel()
 	{
 		addMouseListener(new MouseListener(){
-
-			public void mouseClicked(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			public void mousePressed(MouseEvent arg0) {
-				bullet.jump();
-				
-			}
-
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
+			public void mouseClicked(MouseEvent arg0) {}
+			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent arg0) {bullet.jump();}
+			public void mouseReleased(MouseEvent arg0) {}
 		});
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 	}
@@ -86,6 +72,7 @@ class ShootingPanel extends JPanel implements Runnable
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, WIDTH, HEIGHT);
 		bullet.paint(g);
+		bullet.drawScore(g);
 	}
 	
 	//Start The Thread
@@ -96,13 +83,21 @@ class ShootingPanel extends JPanel implements Runnable
 		thread.start();
 	}
 	
+	//Run The Game!
 	public void run()
 	{
 		while(thread != null)
 		{
 			bullet.move();
-			
+			bullet.addScore();
 			repaint();
+			boolean hit = bullet.hit();
+			
+			//Reset The Game If The Bullet Hits
+			if(hit == true)
+			{
+				bullet.reset();
+			}
 			
 			try {
 				Thread.sleep(40);
