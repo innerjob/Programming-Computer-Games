@@ -22,13 +22,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.TechU.OpenSource.TechUtil;
+
 
 public class WelcomeScreen 
 {
+	
 	public static void main(String[] args)
 	{
 		WelcomeScreen welcome = new WelcomeScreen();
 	}
+	
+	private TechUtil util = new TechUtil();
 	
 	private JFrame frame = new JFrame("Welcome To The Shooting Bullet Game");
 	private int width = 400, height = 100;
@@ -53,10 +58,10 @@ public class WelcomeScreen
 		frame.add(panel, BorderLayout.CENTER);
 		frame.add(start, BorderLayout.SOUTH);
 		
+		field.setColumns(15);
 		panel.add(name);
 		panel.add(field);
 		field.setHorizontalAlignment(SwingConstants.CENTER);
-		field.setColumns(15);
 		
 		start.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -65,7 +70,8 @@ public class WelcomeScreen
 				String name = field.getText();
 				if(name.equals(null) || name.equals(""))
 				{
-					//Popup with an error message 
+					//Popup with an error message
+					util.popup("Error", "Enter Your Name", 100, 100);
 					field.setText("");
 				}
 				else

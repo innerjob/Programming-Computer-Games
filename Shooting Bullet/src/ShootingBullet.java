@@ -12,6 +12,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,32 +21,48 @@ import javax.swing.JPanel;
 
 public class ShootingBullet 
 {
+	//Don't Need A Main Method
 //	public static void main(String[] args)
 //	{
 //		ShootingBullet game = new ShootingBullet();
 //	}
 	
+	public static JFrame getFrame()
+	{
+		return frame;
+	}
+	
+	private static JFrame frame = new JFrame();
+	
 	public ShootingBullet(String name)
 	{
-		JFrame frame = new JFrame(name + " Playing Shooting Bullet");
-		
+		frame.setTitle(name + " Playing Shooting Bullet");
+		String name1 = name;
 		frame.setSize(500, 300);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.addWindowListener(new WindowListener(){
+			public void windowActivated(WindowEvent arg0) {}
+			public void windowClosed(WindowEvent arg0) {}
+			public void windowClosing(WindowEvent arg0) 
+			{
+				System.exit(0);
+			}
+			public void windowDeactivated(WindowEvent arg0) {}
+			public void windowDeiconified(WindowEvent arg0) {}
+			public void windowIconified(WindowEvent arg0) {}
+			public void windowOpened(WindowEvent arg0) {}
+		});
 		frame.setLocationRelativeTo(null);//have the frame popup in the center
 		frame.setResizable(false);
 		
-		ShootingPanel panel = new ShootingPanel();
+		ShootingPanel panel = new ShootingPanel(name1, frame);
 		
 		frame.add(panel, BorderLayout.CENTER);
 		
 		frame.pack();
 	}
 }
-
-
-
-
 class ShootingPanel extends JPanel implements Runnable
 {
 	
@@ -54,8 +72,9 @@ class ShootingPanel extends JPanel implements Runnable
 	private final int HEIGHT = 300;
 	
 	private Bullet bullet = new Bullet();
+	public String name1;
 	
-	public ShootingPanel()
+	public ShootingPanel(String name, JFrame frame)
 	{
 		addMouseListener(new MouseListener(){
 			public void mouseClicked(MouseEvent arg0) {}
@@ -65,6 +84,7 @@ class ShootingPanel extends JPanel implements Runnable
 			public void mouseReleased(MouseEvent arg0) {}
 		});
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		name1 = name;
 	}
 	
 	public void paintComponent(Graphics g)
@@ -86,6 +106,8 @@ class ShootingPanel extends JPanel implements Runnable
 	//Run The Game!
 	public void run()
 	{
+		JFrame frame = ShootingBullet.getFrame();
+		
 		while(thread != null)
 		{
 			bullet.move();
@@ -96,7 +118,10 @@ class ShootingPanel extends JPanel implements Runnable
 			//Reset The Game If The Bullet Hits
 			if(hit == true)
 			{
-				bullet.reset();
+				frame.dispose();
+				removeAll();
+				bullet.reset(frame, name1);
+				thread = null;
 			}
 			
 			try {

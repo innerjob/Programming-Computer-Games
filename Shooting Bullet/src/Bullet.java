@@ -2,6 +2,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
+import javax.swing.JFrame;
+
 /**
  * ROUGH DRAFT
  * @author Sam Redmond
@@ -29,10 +31,7 @@ public class Bullet
 		{//Later the bullet will have a bounding box around it and so will all of the other game objects to check for collisions
 			speed += acceleration;
 			y += speed;
-		}else
-		{
-			
-		}
+		}else{}
 	}
 	
 	//Get The Score
@@ -82,10 +81,10 @@ public class Bullet
 	}
 	
 	//Resets the game after the bullet touches something
-	public void reset()
+	public void reset(JFrame frame, String name)
 	{
-		y = 150;
-		speed = 2;
-		score = 0;//Reset the score when the user loses
+		int score1 = getScore();
+		HighScore score = new HighScore(name, score1);
+		
 	}
 }
