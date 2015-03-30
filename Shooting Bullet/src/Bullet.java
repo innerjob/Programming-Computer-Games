@@ -26,7 +26,7 @@ public class Bullet
 	//Moves the bullet
 	public void move()
 	{
-		x+=3;//Move the bullet to the right
+//		x+=3;//Move the bullet to the right
 		if((y > 0) && y < 300)//For now I will just use the top and bottom of the screen as parameters for losing, adding more stuff as I go along
 		{//Later the bullet will have a bounding box around it and so will all of the other game objects to check for collisions
 			speed += acceleration;

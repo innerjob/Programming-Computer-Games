@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
@@ -38,7 +39,7 @@ public class ShootingBullet
 	{
 		frame.setTitle(name + " Playing Shooting Bullet");
 		String name1 = name;
-		frame.setSize(500, 300);
+		frame.setSize(3000, 300);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.addWindowListener(new WindowListener(){
@@ -53,7 +54,12 @@ public class ShootingBullet
 			public void windowIconified(WindowEvent arg0) {}
 			public void windowOpened(WindowEvent arg0) {}
 		});
-		frame.setLocationRelativeTo(null);//have the frame popup in the center
+//		frame.setLocationRelativeTo(null);//have the frame popup in the center
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		Dimension screenSize = tk.getScreenSize();
+		int screenHeight = screenSize.height;
+		int screenWidth = screenSize.width;
+		frame.setLocation(screenWidth/4, screenHeight/4);
 		frame.setResizable(false);
 		
 		ShootingPanel panel = new ShootingPanel(name1, frame);
@@ -115,7 +121,7 @@ class ShootingPanel extends JPanel implements Runnable
 			repaint();
 			boolean hit = bullet.hit();
 			
-			//Reset The Game If The Bullet Hits
+			//End the game if the player hits the top or bottom
 			if(hit == true)
 			{
 				frame.dispose();
